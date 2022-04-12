@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, viewport-fit=cover">
+    <title>J&D</title>
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Template Main CSS File -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: iPortfolio - v3.7.0
+    * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+<!-- ======= Mobile nav toggle button ======= -->
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="d-flex flex-column">
+
+        <div class="profile">
+            <img src="/assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+            <h1 class="text-light">[[${#request.userPrincipal.principal.getUsername()}]]</h1>
+
+            <form th:action="@{/logout}" method="post" class="rounded text-center mt-2">
+                <input type="submit" value="ODHLÁSIT" class="btn btn-outline-dark"/>
+                <a th:href="@{/users/edit/editSelf}" class="btn btn-outline-dark">NASTAVENÍ</a>
+            </form>
+
+        </div>
+
+        <nav id="navbar" class="nav-menu navbar">
+            <ul>
+                <li><a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/users}" class="nav-link"><span>Seznam uživatelů</span></a></li>
+                <li><a sec:authorize="hasAnyAuthority('ADMIN')" th:href = "@{/heroes}" class="nav-link"><span>Seznam všech hrdinů</span></a></li>
+                <li><a th:href="@{/home}"  class="nav-link">Zpět</a></li>
+            </ul>
+
+        </nav><!-- .nav-menu -->
+
+
+
+    </div>
+</header><!-- End Header -->
+
+
+<main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="herolist" class="d-flex flex-column justify-content-center align-items-center">
+        <div class="hero-container col-10" data-aos="fade-in">
+            <h1 class="ml-2">Jméno hrdiny: <span th:text="${hero.heroName}"></span></h1>
+            <hr>
+                <div class="m-3 text-center">
+                    <div class="row mb-1">
+                        <div class="col-2" >Typ hrdiny: </div>
+                        <div class="col-8 text-start"><h4 th:text="${hero.heroClass}">typ</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-2" >Síla: </label>
+                        <div class="col-4">
+                            <h4 th:text="${hero.strength}" class="col-4">Síla</h4>
+                        </div>
+                        <label class="col-2" >Obratnost:</label>
+                        <div class="col-4">
+                            <h4 th:text="${hero.agility}" class="col-4">Obratnost</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-2" >Výdrž:</label>
+                        <div class="col-4">
+                            <h4 th:text="${hero.endurance}" class="col-4">výdrž</h4>
+                        </div>
+                        <label class="col-2" >Inteligence:</label>
+                        <div class="col-4">
+                            <h4 th:text="${hero.intelligence}" class=" col-4">int</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-2 " >Moudrost</label>
+                        <div class="col-4">
+                            <h4 th:text="${hero.wisdom}" class="col-4">wis</h4>
+                        </div>
+                        <label class="col-2 " >Charisma</label>
+                        <div class="col-4">
+                            <h4 th:text="${hero.charisma}" class="col-4">char</h4>
+                        </div>
+                    </div>
+                    <div class="row mb-4" >
+                        <label class="col-2" >Zbraně a výstroj</label>
+                        <div class="col-10 text-start">
+                            <p th:text="${hero.weapons}" class="col-4">výzbroj</p>
+                        </div>
+                    </div>
+                    <a class="btn btn-outline-light" th:href="@{/updateHeroForm/{id}(id=${hero.heroId})}">Upravit hrdinu</a>
+
+                </div>
+        </div>
+    </section><!-- End About Section -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Vojtěch Čechák</span></strong>
+        </div>
+        <div class="copyright">
+            &copy; Copyright <strong><span>Bootstrap - iPortfolio</span></strong>
+        </div>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+    </div>
+</footer><!-- End  Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/typed.js/typed.min.js"></script>
+<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/popper.min.js"></script>
+</body>
+
+</html>

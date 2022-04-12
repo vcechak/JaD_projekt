@@ -1,0 +1,56 @@
+@font-face {
+    font-family: Immortal;
+    src: url('/assets/IMMORTAL.ttf')
+}
+
+body {
+    font-family: Immortal;
+    margin: auto;
+    max-width:1980px;
+    color: whitesmoke;
+    text-shadow: 2px 2px 5px darkslategrey;
+}
+
+.jumbotron {
+    background-image: url('/assets/jumbotron.jpg');
+    background-size:cover;
+    height:100vh;
+}
+
+h1, h2, h3 {
+    color:whitesmoke;
+    font-family: IMMORTAL;
+    text-shadow: 2px 2px 5px red;
+}
+
+p {
+    color:whitesmoke;
+    text-shadow: 2px 2px 5px black;
+}
+
+.login-error {
+    color: red;
+    font-weight: bold;
+    text-shadow: 0px 0px 5px black;
+}
+
+.reg-label {
+    color:whitesmoke;
+    text-shadow: 0px 0px 5px black;
+}
+
+/*Pro malá zařízení*/
+@media (max-width: 768px) {
+    .jumbotron {
+        background-image: url('/assets/jumbotronXS.jpg');
+        background-size:cover;
+        height:100vh;
+        text-align:center;
+    }
+    .btn {
+        min-height: 50px;
+        min-width: 250px;
+        text-align: center;
+        font-size: 20px;
+    }
+}

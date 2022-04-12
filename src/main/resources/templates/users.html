@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, viewport-fit=cover">
+    <title>J&D</title>
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: iPortfolio - v3.7.0
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light">[[${#request.userPrincipal.principal.getUsername()}]]</h1>
+
+          <form th:action="@{/logout}" method="post" class="rounded text-center mt-2">
+              <input type="submit" value="ODHLÁSIT" class="btn btn-outline-dark"/>
+              <a th:href="@{/users/edit/editSelf}" class="btn btn-outline-dark">NASTAVENÍ</a>
+          </form>
+
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+            <li><a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/users}" class="nav-link"><span>Seznam uživatelů</span></a></li>
+            <li><a sec:authorize="hasAnyAuthority('ADMIN')" th:href = "@{/heroes}" class="nav-link"><span>Seznam všech hrdinů</span></a></li>
+            <li><a th:href="@{/home}"  class="nav-link">Domů</a></li>
+        </ul>
+
+      </nav><!-- .nav-menu -->
+
+
+
+    </div>
+  </header><!-- End Header -->
+
+
+  <main id="main">
+
+      <!-- ======= About Section ======= -->
+      <section id="usersStyl" class="about">
+          <div class="container" data-aos="fade-in">
+
+              <div class="section-title">
+                  <h1>Seznam uživatelů</h1>
+              </div>
+              <div class="table-responsive-md">
+                  <table class="table table-dark table-striped table-bordered text-center">
+                      <thead class="thead-dark">
+                      <tr>
+                          <th>User ID</th>
+                          <th>E-mail</th>
+                          <th>Nick</th>
+                          <th>Aktivní</th>
+                          <th>Roles</th>
+                          <th>Správa uživatelů</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr th:each="user: ${listUsers}">
+                          <td th:text="${user.id}">User ID</td>
+                          <td th:text="${user.email}">E-mail</td>
+                          <td th:text="${user.nick}">Nick</td>
+                          <td th:text="${user.enabled}">Aktivní</td>
+                          <td th:text="${user.roles}">Roles</td>
+                          <td>
+                              <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-outline-light">Update</a>
+
+                              <a th:href="@{/deleteUser(userId=${user.id})}" class="btn btn-outline-danger ml-2">Delete</a>
+                          </td>
+                      </tr>
+                      </tbody>
+                  </table>
+              </div>
+
+          </div>
+      </section><!-- End About Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Vojtěch Čechák</span></strong>
+      </div>
+        <div class="copyright">
+        &copy; Copyright <strong><span>Bootstrap - iPortfolio</span></strong>
+    </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

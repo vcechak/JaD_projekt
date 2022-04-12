@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, viewport-fit=cover">
+    <title>J&D</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+</head>
+<body class="bg-dark">
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Jeskyně a Draci</h1>
+            <p class="lead">Pomocná aplikace pro hraní dobrodružství</p>
+            <hr class="my-4">
+                        <div class="row justify-content-between">
+                                <div class="col-12 col-md-6 text-start m-auto">
+                                    <h4>Informace:</h4>
+                                    <ol class="ml-5">
+                                        <li>Prosím naimportujte databázi jad</li>
+                                        <li>Přihlašovací údaje:
+                                               <ul>
+                                               <li>player : 123456</li>
+                                                   <li>admin : 123456</li>
+                                                   <li>dungeonmaster : 123456</li>
+                                                   <li>nebo můžete registrovat vlastního uživatele</li>
+                                               </ul></li>
+                                    </ol>
+                                </div>
+                                <div class="col-12 col-md-6 text-center">
+                                    <H4>Jsme připravení? Stačí kliknout!</H4>
+                                    <div class="row">
+                                        <div class="col-md col-xs-8 mb-2 text-center">
+                                            <a th:href="@{/login}" class="btn btn-dark btn-lg">Přihlásit</a>
+                                        </div>
+                                        <div class="col-md col-xs-8 mb-2 text-center">
+                                            <a th:href="@{/register}" class="btn btn-dark btn-lg">Registrovat</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    </body>
+</html>
